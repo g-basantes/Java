@@ -1,0 +1,18 @@
+public abstract class Shape {
+	/*Only thing different in terms of syntax is the word abstract
+	 * Abstract classes are ONLY used to derive classes...
+	 * This means you cannot instantiate an abstract class <-- Will be on exam! */
+	
+	// We can also have abstract methods
+	/* 
+	abstract public double area(){
+		// Some code here
+	}
+	*/
+	// That is not how we will define an abstract method
+	abstract public double area();
+		/* 1) Abstract keyword
+		 * 2) Eliminate body of the code AND curly braces
+		 * 3) End line with a semicolon 
+		 */
+}// End of class Shape
