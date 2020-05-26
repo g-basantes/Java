@@ -1,0 +1,116 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+public class ReadWrite {
+	public static void main(String[] args) {
+		for(int x=0; x<4; x++){
+			Scanner sc = new Scanner(System.in); //Instantiate new scanner
+			System.out.println("Please enter the file we are reading from: "); //Prompt user for input
+			String filename = sc.nextLine(); //Takes user input and stores in String filename
+			File readIn = new File(filename); //Instantiate new file
+		
+			String output = "";
+			try{
+				sc = new Scanner(readIn);
+				while(sc.hasNext()){
+					output += sc.next() + " ";
+				}// End of while loop
+			}//End of try block
+			catch (FileNotFoundException e){
+				System.err.println("I couldn't find that file...try again please");
+			}//End of catch block
+		
+			String[] myFileStrings = {""};
+			if(!output.equals("")){//So if output does not equal ""
+				myFileStrings = output.split(" ");
+				for(int i=0; i<myFileStrings.length; i++){
+					System.out.println(myFileStrings[i]+ " ");
+				}//End of for loop
+			}//End of if
+			else{
+				System.out.println(filename + " was an empty file or did not exist.");
+			}//End of else
+			
+			// different input options the user can select
+			Scanner input = new Scanner(System.in);
+			System.out.println("Press 1 to display the file backwards");
+			System.out.println("Press 2 to display the odd indices");
+			System.out.println("Press 3 to display the even indices");
+			System.out.println("Press 4 to display the contents of the file in a single line");
+			
+			int userChoice = input.nextInt();
+			
+			// takes written file and displays content backwards
+			if(userChoice==1){
+				sc = new Scanner(System.in);
+				System.out.println("What file should I output to? ");
+				File writeOut = new File(sc.nextLine());
+				try{
+					PrintWriter pw = new PrintWriter(writeOut);
+					for(int i=myFileStrings.length-1; i>=0; i--){
+						pw.println(myFileStrings[i]);
+					}//End of for loop
+					pw.close();
+				}//End of try
+				catch(FileNotFoundException e){
+					System.err.println("Error writing to the file, please try again");
+				}//End of catch
+			}
+			// takes the written file and only displays the odd indices
+			else if(userChoice==2){
+				sc = new Scanner(System.in);
+				System.out.println("What file should I output to? ");
+				File writeOut = new File(sc.nextLine());
+				try{
+					PrintWriter pw = new PrintWriter(writeOut);
+					for(int i=0; i<myFileStrings.length-1; i++){
+						if(i%2!=0){
+							pw.println(myFileStrings[i]);
+						}
+					}//End of for loop
+					pw.close();
+				}//End of try
+				catch(FileNotFoundException e){
+					System.err.println("Error writing to the file, please try again");
+				}//End of catch
+			}
+			// takes the written file and only displays the even indices 
+			else if(userChoice==3){
+				sc = new Scanner(System.in);
+				System.out.println("What file should I output to? ");
+				File writeOut = new File(sc.nextLine());
+				try{
+					PrintWriter pw = new PrintWriter(writeOut);
+					for(int i=0; i<myFileStrings.length-1; i++){
+						if(i%2==0){
+							pw.println(myFileStrings[i]);
+						}
+					}//End of for loop
+					pw.close();
+				}//End of try
+				catch(FileNotFoundException e){
+					System.err.println("Error writing to the file, please try again");
+				}//End of catch
+			}
+			// takes the written file and displays content in a single line of
+			else if (userChoice==4){
+				sc = new Scanner(System.in);
+				System.out.println("What file should I output to? ");
+				File writeOut = new File(sc.nextLine());
+				try{
+					PrintWriter pw = new PrintWriter(writeOut);
+					for(int i=0; i<myFileStrings.length; i++){
+						pw.print(myFileStrings[i] + " ");
+					}//End of for loop
+					pw.close();
+				}//End of try
+				catch(FileNotFoundException e){
+					System.err.println("Error writing to the file, please try again");
+				}//End of catch
+			}//End of if statements of choice
+		}//End of for loop that runs four times
+	}//End of main method
+	
+}
