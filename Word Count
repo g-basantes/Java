@@ -1,0 +1,42 @@
+public class WordCount {
+	
+	// count function which takes a string and minimum word length as input 
+	public static int countWords(String original, int minLength){
+		int count = 0;
+		int x = 0;
+		
+		// for loop which iterates through the length of the string 
+		for (int i = 0; i < original.length(); i++){
+			/* checks to make sure the character is not a space
+			* takes into account both upper case and lower case characters */
+			if (original.charAt(i) != ' '){
+				if ((original.charAt(i) >= 'a' && original.charAt(i) <= 'z') || (original.charAt(i) >='A' && original.charAt(i) <='Z')){
+					x++;
+				}
+			}
+			// resets x when for loop encounters a space
+			if(original.charAt(i)==' '){
+				if (x >= minLength){
+					count++;
+				}
+				x = 0; 
+			}
+		}
+		// checks to make sure the length of word is equal to specified amount
+		if (x >= minLength){
+			count++;
+		}
+		return count;
+	}
+	
+	// main method to test the WordCount function
+	public static void main(String[] args) {
+		String test = "Hello my name is Juan Perron and I work at an accounting firm";
+		String test2 = "Welcome to New Jersey";
+		String test3 = "Welcome to Rutgers University";
+		
+		System.out.println("Test Result: " + countWords(test,4));
+		System.out.println("Test Result: " + countWords(test2,7));
+		System.out.println("Test Result: " + countWords(test3,2));
+	}
+}
