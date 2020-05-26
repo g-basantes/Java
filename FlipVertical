@@ -1,0 +1,70 @@
+
+public class FlipVertical {
+	
+	// Method that flips image across imaginary vertical line left to right
+		public static void flipVertical(Picture V)
+		{
+			// Gets the width of Picture V and sets equal to int variable width
+			int width = V.getWidth();
+			// Divides width by half and sets equal to int variable half
+			int half = width/2;
+			// Creates new pixel object leftPixels and sets equal to null(empty)
+			Pixel leftPixels = null;
+			// Creates new pixel object rightPixels and sets equal to null(empty)
+			Pixel rightPixels = null;
+			
+			// For loop that iterates through the y positions(columns) of Picture V
+			for (int y=0; y<V.getHeight(); y++)
+			{
+				// For loop that iterates through the x positions(rows) of Picture V
+				for (int x=0; x<half; x++)
+				{
+					// Sets rightPixels equal to the x and y location of the pixel in Picture V
+					leftPixels = V.getPixel(x, y);
+					// Sets leftPixels equal to the very end of x location(right side) and y stays the same
+					rightPixels = V.getPixel(width-1-x, y);
+					// Sets leftPixels equal to the same pixel color at position rightPixels
+					rightPixels.setColor(leftPixels.getColor());
+				}
+			}
+		}
+		
+		// Method that flips image across imaginary vertical line right to left
+		public static void flipVerticalRL(Picture V)
+		{
+			// Gets the width of Picture V and sets equal to int variable width
+			int width = V.getWidth();
+			// Divides width by half and sets equal to int variable half
+			int half = width/2;
+			// Creates new pixel object leftPixels and sets equal to null(empty)
+			Pixel leftPixels = null;
+			// Creates new pixel object rightPixels and sets equal to null(empty)
+			Pixel rightPixels = null;
+			
+			// For loop that iterates through the y positions(columns) of Picture V
+			for (int y=0; y<V.getHeight(); y++)
+			{
+				// For loop that iterates through the x positions(rows) of Picture V
+				for (int x=0; x<half; x++)
+				{
+					// Sets rightPixels equal to the x and y location of the pixel in Picture V
+					leftPixels = V.getPixel(x, y);
+					// Sets leftPixels equal to the very end of x location(right side) and y stays the same
+					rightPixels = V.getPixel(width-1-x, y);
+					// Sets leftPixels equal to the same pixel color at position rightPixels
+					leftPixels.setColor(rightPixels.getColor());
+				}
+			}
+		}
+
+	public static void main(String[] args) {
+		Picture p = new Picture("C:\\Users\\George\\Pictures\\PictureName.jpg");
+		Picture a = new Picture("C:\\Users\\George\\Pictures\\PictureName.jpg");
+		
+		flipVertical(p);
+		p.write("C:\\Users\\George\\Pictures\\PictureName_1.jpg");
+		
+		flipVerticalRL(a);
+		a.write("C:\\Users\\George\\Pictures\\PictureName_2.jpg");
+	}
+}
