@@ -1,0 +1,22 @@
+public class Square extends Shape{
+	/* If you have a subclass that extends an abstract class you must do one of two things
+	 * 1) Implement methods that are abstract
+	 * 2) Make the class abstract also */
+	private double side;
+	
+	public Square(double side){
+		this.side=side;
+	}// End of constructor
+
+	public double getSide() {
+		return side;
+	}// End of getSide()
+
+	public void setSide(double side) {
+		this.side = side;
+	}// End of setSide(double side)
+	
+	public double area(){
+		return this.side * this.side;
+	}// End of area
+}// End of Square method
