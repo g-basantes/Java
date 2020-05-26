@@ -1,0 +1,101 @@
+public class FlipDiagonal {
+	
+		// Method that flips image across imaginary diagonal line
+		public static void flipDiagonalRL(Picture V)
+		{
+			// Get height of Picture V and store value in variable height
+			int height = V.getHeight();
+			System.out.println(height);
+			// Get width of Picture V and store value in variable width
+			int width = V.getWidth();
+			System.out.println(width);
+			
+			// Create new pixel object topDiagonals and set equal to null(empty)
+			Pixel topDiagonals = null;
+			// Create new pixel object bottomDiaginals and set equal to null(empty)
+			Pixel bottomDiagonals = null;
+		
+			// For loop to iterate through the x positions(rows) of picture
+			for (int x=width-1; x>=0; x--)
+			{
+				// For loop to iterate through the y positions(columns) of picture
+				for (int y=0; y<x; y++)
+				{
+					// Sets topDiagonals to x and y position of pixel in Picture V
+					topDiagonals = V.getPixel(x, y);
+					
+					// Sets x position of pixel equal to int variable xPos
+					int xPos = topDiagonals.getX();
+					// Sets y position of pixel equal to int variable yPos
+					int yPos = topDiagonals .getY();
+					
+					// Stores x position in temporary int variable xPosTemp
+					int xPosTemp = xPos;
+					// Stores y position in temporary int variable yPosTemp
+					int yPosTemp = yPos;
+					
+					// Switches the x position to the y position 
+					xPos = yPosTemp;
+					// Switches the y position to the x position
+					yPos = xPosTemp;
+					
+					// Sets bottomPixels equal to very bottom right x position and sets y equal to very bottom right y position (bottom)
+					bottomDiagonals = V.getPixel(xPos, yPos);
+					// Sets bottomDiagonals equal to the same pixel color at position topPixels
+					// Switch bottomDiagonals to topDiagonals to switch orientation (bottom to top reflection)
+					bottomDiagonals.setColor(topDiagonals.getColor());		
+				}
+			}
+		}
+		
+		// Method that flips image across imaginary diagonal line
+		public static void flipDiagonal(Picture V)
+		{
+			// Get height of Picture V and store value in variable height
+			int height = V.getHeight();
+			// Get width of Picture V and store value in variable width
+			int width = V.getWidth();
+					
+			// Create new pixel object topDiagonals and set equal to null(empty)
+			Pixel topDiagonals = null;
+			// Create new pixel object bottomDiaginals and set equal to null(empty)
+			Pixel bottomDiagonals = null;
+				
+			// For loop to iterate through the x positions(rows) of picture
+			for (int x=0; x<width; x++)
+			{
+				// For loop to iterate through the y positions(columns) of picture
+				for (int y=0; y<height-x; y++)
+				{
+					// Sets topDiagonals equal to the x and y location of the pixel in Picture V
+					topDiagonals = V.getPixel(x, y);
+					// Sets the x position of topDiagonals to int variable xPos
+					int xPos = topDiagonals.getX();
+					// Sets the y position of topDiagonals to int variable yPos
+					int yPos = topDiagonals.getY();
+							
+					// Sets new y position by subtracting the original x position from the height
+					int newY = ((height-1)-xPos);
+					// Sets new x position by subtracting the original y position from the width
+					int newX = ((width-1)-yPos);
+							
+					// Sets bottomDiagonals equal to new x position and new y position
+					bottomDiagonals = V.getPixel(newX, newY);
+					// Sets bottomDiagonals equal to the same pixel color as topDiagonals
+					bottomDiagonals.setColor(topDiagonals.getColor());
+				}
+			}
+		}
+		
+		public static void main(String[] args)
+		{
+			Picture p = new Picture("C:\\Users\\George\\Pictures\\square.jpg");
+			Picture a = new Picture("C:\\Users\\George\\Pictures\\PSN.jpg");
+			
+			flipDiagonalRL(p);
+			p.write("C:\\Users\\George\\Pictures\\square_1.jpg");
+			
+			flipDiagonal(a);
+			a.write("C:\\Users\\George\\Pictures\\PSN_1.jpg");
+		}
+}
