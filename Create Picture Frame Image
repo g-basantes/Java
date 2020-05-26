@@ -1,0 +1,105 @@
+import java.awt.Color;
+
+public class Milestone3{
+	
+	// Method to create a picture frame photo
+	public static void formPictureFrame(Picture a)
+	{
+		// Gets the height of Picture a and stores the value in int value height
+		int height = a.getHeight();
+		// Gets the width of Picture a and stores the value in int value width
+		int width = a.getWidth();
+		// Divides the height of picture a by 4 and stores the value in int variable newHeight
+		int newHeight = (a.getHeight())/4;
+		// Divides the width of Picture a by 5 and stores the value in int variable newWidth
+		int newWidth = (a.getWidth())/5;
+		// Creates a new pixel object called pixel
+		Pixel pixel = null;
+		
+		// Gets a random number from 0 to 255 and sets equal to int variable r
+		int r = (int)(Math.random( )*256);
+		// Gets a random number from 0 to 255 and sets equal to int variable g
+		int g = (int)(Math.random( )*256);
+		// Gets a random number from 0 to 255 and sets equal to int variable b
+		int b = (int)(Math.random( )*256);
+		
+		// Top left triangle
+		// For loop that iterates through the x position starting at 0 and ending at newWidth
+		for(int x=0; x<=newWidth; x++)
+		{
+			// For loop that iterates through the y position starting at 0 and ending at newHeight minus the x value 
+			for(int y=0; y<newHeight-x; y++)
+			{
+				// Gets the pixel object at the the specific x and y position
+				pixel = a.getPixel(x, y);
+				// Changes the color of pixel to a random color
+				pixel.setColor(new Color(r,g,b));
+			}
+			
+		}
+		
+		// Bottom left triangle
+		// Creates new int variable newNum and sets equal to 0
+		int newNum = 0; 
+		// For loop that iterates through x position staring at 0 and ending at newWidth
+		for(int x=0; x<=newWidth; x++)
+		{
+			// For loop that iterates through the y position starting at newHeight*3 + newNum and ending at height-1
+			for(int y=newHeight*3 + newNum; y<height-1; y++)
+			{
+				// Gets the pixel object at the the specific x and y position
+				pixel = a.getPixel(x, y);
+				// Changes the color of pixel to a random color
+				pixel.setColor(new Color(r,g,b));
+			}
+			// Counter that increases newNum by 1 after every loop to make sure the 
+			newNum++; 
+		}
+		
+		// Top right triangle
+		// Creates new int variable newNumY and sets equal to newHeight-1
+		int newNumY=newHeight-1;
+		// For loop that iterates through x position starting at newWidth*4 and ending at width-1
+		for(int x=(newWidth*4); x<=width-1; x++)
+		{
+			// For loop that iterates through y position starting at 0 and ending at newHeight-newNumY
+			for(int y=0; y<=newHeight-newNumY; y++)
+			{
+				// Gets the pixel object at the the specific x and y position
+				pixel = a.getPixel(x, y);
+				// Changes the color of pixel to a random color
+				pixel.setColor(new Color(r,g,b));
+			}
+			// Counter that decreases newNumY by one everytime the loop iterates
+			newNumY--;
+		}
+		
+		//bottom right half 
+		// Creates new int variable NewNumY and sets equal to newHeight+1
+		int NewNumY = newHeight+1;
+		// For loop that iterates through x position starting at newWidth*4 and ending at width-1
+		for(int x=(newWidth*4); x<=width-1; x++)
+		{
+			// For loop that iterates through the y position starting at newHeight*3+NewNumY and ending at height-1
+			for(int y=(newHeight*3)+NewNumY; y<height-1; y++)
+			{
+				// Gets the pixel object at the the specific x and y position
+				pixel = a.getPixel(x, y);
+				// Changes the color of pixel to a random color
+				pixel.setColor(new Color(r,g,b));
+			}
+			// Counter that decreases NewNumY by one everytime the loop iterates
+			NewNumY--;
+		}
+	}
+
+	public static void main(String[] args) {
+		// Creates a new Picture object a
+		Picture a = new Picture("C:\\Users\\George\\Pictures\\Central_image.jpg");
+		
+		// Calls method formPictureFrame and passes Picture a into it
+		formPictureFrame(a);
+		// Writes a new picture 
+		a.write("C:\\Users\\George\\Pictures\\New_Image.jpg");
+	}
+}
