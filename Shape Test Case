@@ -1,0 +1,26 @@
+public class TestShape {
+
+	public static void main(String[] args) {
+		/*Shape shape1 = new Shape();
+		 * The previous line won't work because we cannot instantiate an abstract class */
+		
+		// New Object Array with the slots
+		Shape[] myShapes = new Shape[3];
+		
+		// Square
+		myShapes[0] = new Square(2.0);
+		System.out.println(myShapes[0].area());
+		
+		// Circle 
+		myShapes[1] = new Circle(10.0);
+		System.out.println(myShapes[1].area());
+		
+		/* An Object oriented language's ability to appropriately process classes that 
+		 * were derived from the same base class is known as polymorphism */
+		
+		// Triangle
+		myShapes[2] = new Triangle(10.0, 3.0);
+		System.out.println(myShapes[2].area());
+		
+	}// End of main method
+}// End of TestShape class
