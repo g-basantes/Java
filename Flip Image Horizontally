@@ -1,0 +1,69 @@
+public class FlipHorizontal {
+	
+	// Method that flips image across imaginary horizontal line (top to bottom)
+	public static void flipHorizontal(Picture V)
+	{
+		// Gets the height of Picture V and sets equal to int variable height
+		int height = V.getHeight();
+		// Gets the height of Picture V and sets equal to int variable hlaf
+		int half = height/2;
+		// Creates new pixel object topPixels and sets equal to null(empty)
+		Pixel topPixels = null;
+		// Creates new pixel object bottomPixels and sets equal to null(empty)
+		Pixel bottomPixels = null;
+		
+		// For loop that iterates through the x positions(rows) of Picture V
+		for (int x=0; x<V.getWidth(); x++)
+		{
+			// For loop that iterates through the y positions(columns) of Picture V
+			for (int y=0; y<half; y++)
+			{
+				// Sets topPixels equal to the x and y location of the pixel in Picture V
+				topPixels = V.getPixel(x, y);
+				// Sets bottomPixels equal to original x position and sets y equal to very end y position (bottom)
+				bottomPixels = V.getPixel(x, height-1-y);
+				// Sets bottomPixels equal to the same pixel color at position topPixels
+				bottomPixels.setColor(topPixels.getColor());
+			}
+		}
+	}
+	
+	// Method that flips image across imaginary horizontal line
+	public static void flipHorizontalBT(Picture V)
+	{
+		// Gets the height of Picture V and sets equal to int variable height
+		int height = V.getHeight();
+		// Gets the height of Picture V and sets equal to int variable hlaf
+		int half = height/2;
+		// Creates new pixel object topPixels and sets equal to null(empty)
+		Pixel topPixels = null;
+		// Creates new pixel object bottomPixels and sets equal to null(empty)
+		Pixel bottomPixels = null;
+		
+		// For loop that iterates through the x positions(rows) of Picture V
+		for (int x=0; x<V.getWidth(); x++)
+		{
+			// For loop that iterates through the y positions(columns) of Picture V
+			for (int y=0; y<half; y++)
+			{
+				// Sets topPixels equal to the x and y location of the pixel in Picture V
+				topPixels = V.getPixel(x, y);
+				// Sets bottomPixels equal to original x position and sets y equal to very end y position (bottom)
+				bottomPixels = V.getPixel(x, height-1-y);
+				// Sets bottomPixels equal to the same pixel color at position topPixels
+				topPixels.setColor(bottomPixels.getColor());
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		Picture p = new Picture("C:\\Users\\George\\Pictures\\PictureName.jpg");
+		Picture a = new Picture("C:\\Users\\George\\Pictures\\PictureName.jpg");
+		
+		flipHorizontal(p);
+		p.write("C:\\Users\\George\\Pictures\\PictureName_1.jpg");
+		
+		flipHorizontalBT(a);
+		a.write("C:\\Users\\George\\Pictures\\PictureName_2.jpg");
+	}
+}
