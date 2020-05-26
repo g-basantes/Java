@@ -1,0 +1,39 @@
+public class Compress {
+	
+	// compress function which takes a string as input 
+	public static String compress(String original){
+		int count = 0;
+		String a = "";
+		
+		// for loop to iterate through the string
+		for (int i = 0; i < original.length(); i++){
+			char letter = original.charAt(i);
+			count = 1;
+			
+			// while loop to determine number of repeated characters present
+			while (i + 1 < original.length() && original.charAt(i) == original.charAt(i+1)){
+				count++;
+				i++;
+			}
+			// used if only a single character is present
+			if (count==1){
+				a = a.concat(Character.toString(letter));
+			}
+			// when multiple characters present takes the count and concatenates them together 
+			else{
+				a = a.concat(Integer.toString(count).concat(Character.toString(letter)));
+			}
+		}
+		return a;
+	}
+	
+	// main method to test the compress function with three examples
+	public static void main(String[] args){
+		String x = compress("qqwwwwwwwwweeeeerrtyyyyyqqqqwEErTTT");
+		System.out.println("Test Result: " + x);
+		
+		String y = compress("dddrrrttoppkkllasbbccm");
+		System.out.println("Test Result: " + y);
+		
+	}// end of main method
+}// end of compress class
