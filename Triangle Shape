@@ -1,0 +1,30 @@
+public class Triangle extends Shape{
+	private double base;
+	private double height;
+	
+	public Triangle(double base, double height){
+		this.base=base;
+		this.height=height;
+	}// End of constructor
+
+	public double getBase() {
+		return base;
+	}// End of getBase()
+
+	public void setBase(double base) {
+		this.base = base;
+	}// End of setBase(double base)
+
+	public double getHeight() {
+		return height;
+	}// End of getHeight()
+
+	public void setHeight(double height) {
+		this.height = height;
+	}// End of setHeight(double height)
+
+	public double area(){
+		return this.base * this.height * .5; 
+	}// End of area()
+	
+}// End of Triangle class
