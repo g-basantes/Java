@@ -1,0 +1,45 @@
+public class StringRec {
+	
+	// decompress function which takes a string as input
+	public static String decompress(String compressedText)
+	{
+		char c; 
+		String decompress = "";
+		
+		// returns short length strings
+		if(compressedText.length()<=1){
+			return compressedText;
+		}
+		
+		c = compressedText.charAt(0);
+		
+		if(Character.isDigit(c)){
+			// when there is number of characters as a precedent takes that as the input for string length
+			if(c!='0'){
+				c--;
+				decompress += compressedText.substring(1, 2) + decompress(c+compressedText.substring(1));
+			}
+			// when no number is present takes the character alone
+			else{
+				decompress += decompress(compressedText.substring(2));
+			}
+		}
+		else{
+			decompress += compressedText.substring(0,1) + decompress(compressedText.substring(1));
+		}
+		return decompress;
+	}
+	
+	// public method to test decompress function
+	public static void main(String[] args)
+	{
+		String a = "q9w5e2rt5y4qw2Er3T";
+		String b = "a2b3c4d5e";
+		String c = "3d3r2to2p2k2las2b2cm";
+		
+		System.out.println(decompress(a));
+		System.out.println(decompress(b));
+		System.out.println(decompress(c));
+		
+	}// end of main method
+}// end of StringRec class
